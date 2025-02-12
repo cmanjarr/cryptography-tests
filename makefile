@@ -16,7 +16,7 @@ TARGET = $(SRCS:.cpp=)
 TARGET_CLEAN = $(TARGET)
 
 #Source files
-SRCS = CM_01-06-solution.cpp
+SRCS = CM_01-06-SimpleMDHash.cpp
 
 #Object files
 OBJS = $(SRCS:.cpp=.o)
