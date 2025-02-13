@@ -13,8 +13,6 @@
  *
  */
 
-/* 2025-Feb   Carlos Manjarres - CH6 challenge implemenation -reusing given hash compression function.  */
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -67,7 +65,8 @@ int main()
 uint64_t MyCompression(uint64_t left, uint64_t right)
 {
     if (debug)
-        cout << "MyCompression() ->" << "left=" << left << ", rigth=" << right
+        cout << "MyCompression() ->" << "left=" << left
+             << ", rigth=" << right
              << endl;
 
     uint32_t x1 = (uint32_t)left;  // grab right 32 bits of left
@@ -144,9 +143,6 @@ uint64_t MyCompression(uint64_t left, uint64_t right)
     lOut = ((uint32_t)b << 24) + ((uint32_t)d << 16) + ((uint32_t)g << 8) + e;
     lOut ^= x4;
 
-    if (debug)
-        cout << "MyCompression() <-" << endl;
-
     return ((uint64_t)lOut << 32) + rOut;
 }
 
@@ -187,11 +183,15 @@ uint64_t cmMDhash(const char *plaintext, uint64_t iv)
         if (debug)
             cout << "n=" << n << endl;
         // prepare next plaintext block
-        char plaintextBlock[blockSize] = {};
+        char *plaintextBlock = new char[blockSize];
         for (uint64_t i = 0; i < blockSize; i++)
             plaintextBlock[i] = paddedPlaintext[n * blockSize + i]; // copy nth block chars
+        if (debug)
+        {
+            cout << "plaintextBlock=" << plaintextBlock << endl;
+        }
         // get new hash block
-        hashedBlock = MyCompression(*(uint64_t *)plaintextBlock, hashedBlock); // memcpy (&,str,sizeof(str))
+        hashedBlock = MyCompression(*(uint64_t *)plaintextBlock, hashedBlock); // convert char block into 64 bit int: cast to 64 int ptr, then de-reference (copying 64 bits /8 bytes/chars)
     }
     return hashedBlock;
 }
