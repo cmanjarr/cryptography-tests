@@ -65,9 +65,7 @@ int main()
 uint64_t MyCompression(uint64_t left, uint64_t right)
 {
     if (debug)
-        cout << "MyCompression() ->" << "left=" << left
-             << ", rigth=" << right
-             << endl;
+        cout << "MyCompression() ->" << hex << "left=" << left << ", rigth=" << right << endl;
 
     uint32_t x1 = (uint32_t)left;  // grab right 32 bits of left
     uint32_t x2 = left >> 32;      // left 32 bits of left
