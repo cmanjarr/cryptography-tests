@@ -17,7 +17,7 @@ IV = 0x439D148AA5B55A8C   // Initial Vector
 - Pad message with '0' if message size is not an exact multiple of block size.  ( using modulo operator )
 - Initialize hashed block with IV
 - Loop until end of message ( reading one block a time )
-  -	Transfer message block chars into local block
+  -	Transfer next message block chars into local block
   -	Calculate new hashed block calling:  hash(left=local block, right=hashed block )
 - Return last hash bock
 
