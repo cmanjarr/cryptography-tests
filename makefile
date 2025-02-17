@@ -1,7 +1,7 @@
 #cmanjarr 
 #Usage: 
 #  cd <Chapter>
-#  make file.cpp -f ../makefile
+#  make SRCS=file.cpp -f ../makefile
 
 #Compiler
 CXX = g++
@@ -16,7 +16,7 @@ TARGET = $(SRCS:.cpp=)
 TARGET_CLEAN = $(TARGET)
 
 #Source files
-SRCS = CM_01-06-SimpleMDHash.cpp
+SRCS = CM_01-06-solution.cpp
 
 #Object files
 OBJS = $(SRCS:.cpp=.o)
