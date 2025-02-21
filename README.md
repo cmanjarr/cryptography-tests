@@ -60,3 +60,5 @@ plaintextBlock="QUITE TH"
 Hex: 0x5155495445205448  ( 51 55 49 54 45 20 54 48 )
 Inside compression function:  left= 0x4854204554495551   ( 48 54 20 45 54 49 55 51 )
 ```
+## MyCompression() hash function
+![image](https://github.com/user-attachments/assets/154cc343-bc00-4a4b-849b-1b77567ae077)
