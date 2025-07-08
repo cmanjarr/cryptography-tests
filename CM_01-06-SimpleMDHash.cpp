@@ -51,9 +51,9 @@ int main()
         // Copy the file contents into memory
         inFile.read(plaintext, fileLength);
 
-        hashValue = MyHash(plaintext, fileLength);
+        hashValue = MyHash(plaintext);
     */
-    hashValue = MyHash("QUITE THE TEST CASE YOU HAVE THERE", 34);
+    hashValue = MyHash("QUITE THE TEST CASE YOU HAVE THERE");
 
     cout << "The hash value is: 0x" << hex << setfill('0')
          << uppercase << setw(16) << hashValue << endl;
@@ -163,7 +163,9 @@ uint64_t cmMDhash(const char *plaintext, uint64_t iv)
     {
         missing = blockSize - unPaddedChars; // i.e 8-2 = 6
     }
-    char paddedPlaintext[messageSize + missing] = {}; // i.e 34+6 = 40
+    uint64_t paddedSize = messageSize + missing;      // i.e 34+6 = 40
+    char *paddedPlaintext = new char[paddedSize + 1]; // +1 for null terminator
+    paddedPlaintext[paddedSize] = '\0';               // null terminate the string
     for (uint8_t i = 0; i < messageSize; i++)
     {
         paddedPlaintext[i] = plaintext[i]; // copy original message (34)
@@ -195,10 +197,10 @@ uint64_t cmMDhash(const char *plaintext, uint64_t iv)
 }
 
 //
-uint64_t MyHash(char *plaintext, uint64_t fileLen)
+uint64_t MyHash(char *plaintext)
 {
     const uint64_t iv = 0x439D148AA5B55A8C;
 
-    // cmanjarr implemenation
+    // cmanjarr implementation
     return cmMDhash(plaintext, iv);
 }
